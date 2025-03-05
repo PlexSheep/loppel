@@ -1,19 +1,19 @@
-# lopppel
+# loppel
 
 ![Project badge](https://img.shields.io/badge/language-Rust-blue.svg)
-![Crates.io License](https://img.shields.io/crates/l/lopppel)
-![GitHub Release](https://img.shields.io/github/v/release/PlexSheep/lopppel)
-![GitHub language count](https://img.shields.io/github/languages/count/PlexSheep/lopppel)
+![Crates.io License](https://img.shields.io/crates/l/loppel)
+![GitHub Release](https://img.shields.io/github/v/release/PlexSheep/loppel)
+![GitHub language count](https://img.shields.io/github/languages/count/PlexSheep/loppel)
 [![Rust CI](https://github.com/PlexSheep/hedu/actions/workflows/cargo.yaml/badge.svg)](https://github.com/PlexSheep/hedu/actions/workflows/cargo.yaml)
 
 
 Simple local file backups with a bit of compression
 
-* [GitHub](https://github.com/PlexSheep/lopppel)
-* [crates.io](https://crates.io/crates/lopppel)
-* [docs.rs](https://docs.rs/crate/lopppel/)
+* [GitHub](https://github.com/PlexSheep/loppel)
+* [crates.io](https://crates.io/crates/loppel)
+* [docs.rs](https://docs.rs/crate/loppel/)
 
-lopppel creates backup copies of files and directories right where they are
+loppel creates backup copies of files and directories right where they are
 – just add `.bak`, `.bak.d`, or `.tar.zstd` if you need them smaller. No cloud,
 no complicated configs, just quick local copies when you need them.
 
