@@ -2,6 +2,22 @@
 
 ## [Unreleased]
 
+## [0.1.1](https://github.com/PlexSheep/loppel/compare/v0.1.0...v0.1.1)
+
+### ⛰️ Features
+
+- Remove original with -d - ([1f2ae1b](https://github.com/PlexSheep/loppel/commit/1f2ae1bd1ea5739ee37a97b67127eca6f04840ae))
+
+### 📚 Documentation
+
+- Update readme and Cargo.toml (keywords and categories) - ([0cabaf0](https://github.com/PlexSheep/loppel/commit/0cabaf0b588d207ab7c31030c7e60325477863c5))
+
+### ⚙️ Miscellaneous Tasks
+
+- Fix typo in readme - ([cef26fd](https://github.com/PlexSheep/loppel/commit/cef26fd1cf03610f7abe379095890139b534edb2))
+- Allow publish - ([55f5019](https://github.com/PlexSheep/loppel/commit/55f50196cc39e4054089fc16a87a75602d246ddf))
+
+
 ## [0.1.0]
 
 ### ⛰️ Features
