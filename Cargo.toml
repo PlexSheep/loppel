@@ -9,7 +9,8 @@ description = "Simple local file backups with a bit of compression"
 readme = "README.md"
 homepage = "https://github.com/PlexSheep/lopppel"
 repository = "https://github.com/PlexSheep/lopppel"
-keywords = ["cli"]
+keywords = ["cli", "backup", "local-backup"]
+categories = ["command-line-utilities", "filesystem"]
 
 
 [dependencies]
