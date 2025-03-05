@@ -547,7 +547,7 @@ dependencies = [
  "anyhow",
  "assert_cmd",
  "cargo-bin",
- "clap 4.5.27",
+ "clap 4.5.30",
  "fastrand",
  "predicates",
  "serial_test",
