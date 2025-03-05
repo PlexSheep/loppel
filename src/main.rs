@@ -41,7 +41,7 @@ enum Commands {
     #[clap(visible_alias = "bak")]
     Backup {
         /// Files or directories to backup
-        paths: Vec<PathBuf>,
+        path: PathBuf,
 
         /// Use zstd compression
         #[arg(short = 'z', long)]
@@ -99,28 +99,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         cli.command.unwrap()
     };
 
+    let created;
     match command {
-        Commands::Backup { paths, compress } => {
-            if paths.is_empty() {
+        Commands::Backup { path, compress } => {
+            if !path.exists() {
+                eprintln!("Error: {:?} does not exist", path);
                 help_and_exit()
             }
-            for path in paths {
-                if !path.exists() {
-                    eprintln!("Error: {:?} does not exist", path);
-                    continue;
-                }
 
-                let result = if path.is_dir() {
-                    backup_dir(&path, compress)
-                } else if path.is_file() {
-                    backup_file(&path, compress)
-                } else {
-                    panic!("this is neither a file nor a directory, don't know what to do")
-                };
-
-                if let Err(e) = result {
-                    eprintln!("Error backing up {:?}: {}", path, e);
-                }
+            if path.is_dir() {
+                created = backup_dir(&path, compress)?;
+            } else if path.is_file() {
+                created = backup_file(&path, compress)?;
+            } else {
+                panic!("this is neither a file nor a directory, don't know what to do")
             }
         }
         Commands::Restore {
@@ -130,11 +122,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         } => {
             println!("Restoring from {:?}", path);
             let out = output_dir.unwrap_or(std::env::current_dir()?);
-            restore(&path, &out)?;
+            created = restore(&path, &out)?;
             if delete && (cli.confirm || confirm(format!("delete {}?", path.display()))?) {
                 recursive_remove(&path)?;
             }
         }
+    }
+
+    if cli.verbose {
+        println!("{}", created.display())
     }
 
     Ok(())
@@ -184,7 +180,7 @@ fn remove_extension(path: &Path, suffix: &str) -> PathBuf {
     }
 }
 
-fn restore(path: &Path, output_dir: &Path) -> io::Result<()> {
+fn restore(path: &Path, output_dir: &Path) -> io::Result<PathBuf> {
     if !path.exists() {
         let e = io::Error::new(
             io::ErrorKind::NotFound,
@@ -220,7 +216,7 @@ fn restore(path: &Path, output_dir: &Path) -> io::Result<()> {
         }
 
         read_archive(path, |a| a.unpack(output_dir))?;
-        Ok(())
+        todo!("return the path")
     } else if path_s.ends_with("bak") {
         if !path.is_file() {
             panic!("bak name but not a file")
@@ -228,8 +224,8 @@ fn restore(path: &Path, output_dir: &Path) -> io::Result<()> {
 
         let target = remove_extension(path, "bak");
         let target = output_dir.join(target.file_name().unwrap());
-        fs::copy(path, target)?;
-        Ok(())
+        fs::copy(path, &target)?;
+        Ok(target)
     } else if path_s.ends_with("bak.d") {
         if path.is_file() {
             panic!("bak.d name but not a directory")
@@ -237,7 +233,7 @@ fn restore(path: &Path, output_dir: &Path) -> io::Result<()> {
         let target = remove_extension(path, "bak.d");
         let target = output_dir.join(target.file_name().unwrap());
         copy_dir_all(path, &target)?;
-        Ok(())
+        Ok(target)
     } else {
         panic!("unknown file {}", path_s)
     }
