@@ -46,6 +46,10 @@ enum Commands {
         /// Use zstd compression
         #[arg(short = 'z', long)]
         compress: bool,
+
+        /// Delete original after successful backup
+        #[arg(short = 'd', long)]
+        delete: bool,
     },
 
     /// Restore from backup
@@ -101,7 +105,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let created;
     match command {
-        Commands::Backup { path, compress } => {
+        Commands::Backup {
+            path,
+            compress,
+            delete,
+        } => {
             if !path.exists() {
                 eprintln!("Error: {:?} does not exist", path);
                 help_and_exit()
@@ -113,6 +121,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 created = backup_file(&path, compress)?;
             } else {
                 panic!("this is neither a file nor a directory, don't know what to do")
+            }
+
+            if delete && (cli.confirm || confirm(format!("delete {}?", path.display()))?) {
+                recursive_remove(&path)?;
             }
         }
         Commands::Restore {
