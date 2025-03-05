@@ -13,8 +13,9 @@ keywords = ["cli"]
 
 
 [dependencies]
+
+tar = "0.4.44"
 clap = { version = "4.5.30", features = ["derive"] }
-tar = "0.4.43"
 zstd = { version = "0.13.3", features = [] }
 
 [dev-dependencies]
