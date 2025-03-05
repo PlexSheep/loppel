@@ -5,8 +5,8 @@ on:
       - '**'
   push:
     branches:
-      - '**'
-      # - '!master'
+      - 'master'
+      - 'devel'
 
 env:
   CARGO_TERM_COLOR: always
