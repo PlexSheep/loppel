@@ -20,7 +20,7 @@ clap = { version = "4.5.30", features = ["derive"] }
 zstd = { version = "0.13.3", features = [] }
 
 [dev-dependencies]
-anyhow = "1.0.95"
+anyhow = "1.0.98"
 assert_cmd = "2.0.16"
 cargo-bin = "0.3.0"
 fastrand = "2.3.0"
