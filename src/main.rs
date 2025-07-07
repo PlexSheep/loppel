@@ -5,6 +5,7 @@ use std::path::{Path, PathBuf};
 use std::{fs, io};
 use zstd::DEFAULT_COMPRESSION_LEVEL;
 
+const ARCHIVE_ENDINGS: &[&str] = &[".tar.zstd", ".tar.zst"];
 const HELP_TEMPLATE: &str = r"{about-section}
 {usage-heading} {usage}
 
@@ -111,7 +112,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             delete,
         } => {
             if !path.exists() {
-                eprintln!("Error: {:?} does not exist", path);
+                eprintln!("Error: {path:?} does not exist");
                 help_and_exit()
             }
 
@@ -132,7 +133,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             delete,
             output_dir,
         } => {
-            println!("Restoring from {:?}", path);
             let out = output_dir.unwrap_or(std::env::current_dir()?);
             created = restore(&path, &out)?;
             if delete && (cli.confirm || confirm(format!("delete {}?", path.display()))?) {
@@ -228,7 +228,10 @@ fn restore(path: &Path, output_dir: &Path) -> io::Result<PathBuf> {
         }
 
         read_archive(path, |a| a.unpack(output_dir))?;
-        todo!("return the path")
+
+        let mut target = output_dir.to_path_buf();
+        target.push(remove_archive_ending(path));
+        Ok(target)
     } else if path_s.ends_with("bak") {
         if !path.is_file() {
             panic!("bak name but not a file")
@@ -247,7 +250,7 @@ fn restore(path: &Path, output_dir: &Path) -> io::Result<PathBuf> {
         copy_dir_all(path, &target)?;
         Ok(target)
     } else {
-        panic!("unknown file {}", path_s)
+        panic!("unknown file {path_s}")
     }
 }
 
