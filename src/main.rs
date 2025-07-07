@@ -84,6 +84,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if a.len() < 2 {
             help_and_exit()
         }
+        if a[1] == "help" {
+            help_and_exit()
+        }
         if !(a[1].starts_with("-")
             || a[1] == "r"
             || a[1] == "res"
