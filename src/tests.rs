@@ -148,3 +148,27 @@ fn test_dir_bak_restore() -> io::Result<()> {
     Ok(())
 }
 
+#[test]
+fn test_remove_archive_ending() {
+    let ts = &[
+        ("/foo/bar/qux.tar.zstd", "/foo/bar/qux"),
+        ("/foo/bar/qux.txt.tar.zstd", "/foo/bar/qux.txt"),
+        ("/foo/bar/qux.txt.tar.gz", "/foo/bar/qux.txt.tar.gz"),
+    ];
+
+    // for my sanity
+    {
+        let s = String::from("FOO_BANANA/help.me");
+        assert!(s.ends_with("help.me"));
+        assert!(s.ends_with("BANANA/help.me"));
+        assert!(s.ends_with(".me"));
+        assert!(!s.ends_with(".you"));
+    }
+
+    for (t, should) in ts {
+        let p: PathBuf = t.into();
+        let should: PathBuf = should.into();
+        let is = remove_archive_ending(p);
+        assert_eq!(is, should)
+    }
+}
