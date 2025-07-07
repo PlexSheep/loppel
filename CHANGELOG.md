@@ -2,6 +2,29 @@
 
 ## [Unreleased]
 
+## [0.1.2](https://github.com/PlexSheep/loppel/compare/v0.1.1...v0.1.2)
+
+### ⛰️ Features
+
+- Display target path on restore with verbose, remove a common panic - ([606f25b](https://github.com/PlexSheep/loppel/commit/606f25badc5d3ab969f92dbf390c5826284c89c3))
+
+### 🐛 Bug Fixes
+
+- Catch help command early #9 - ([0741d3d](https://github.com/PlexSheep/loppel/commit/0741d3d49aac9a37f38992ccd58756652f6b8dd9))
+
+### 🚜 Refactor
+
+- Move unit tests to new module - ([c12dc0e](https://github.com/PlexSheep/loppel/commit/c12dc0ee0d2a7fa974fd56602bfd2a42a79c3f35))
+
+### 🧪 Testing
+
+- Add unit test for extension removal - ([3e895b2](https://github.com/PlexSheep/loppel/commit/3e895b2f640d5ee28862ce1da02159462df00bc8))
+
+### ⚙️ Miscellaneous Tasks
+
+- Update deps - ([3eb4a2a](https://github.com/PlexSheep/loppel/commit/3eb4a2adf9e7aeb7ca265846243cec49dd3a479f))
+
+
 ## [0.1.1](https://github.com/PlexSheep/loppel/compare/v0.1.0...v0.1.1)
 
 ### ⛰️ Features
