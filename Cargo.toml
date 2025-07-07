@@ -16,14 +16,14 @@ categories = ["command-line-utilities", "filesystem"]
 [dependencies]
 
 tar = "0.4.44"
-clap = { version = "4.5.30", features = ["derive"] }
+clap = { version = "4.5.40", features = ["derive"] }
 zstd = { version = "0.13.3", features = [] }
 
 [dev-dependencies]
-anyhow = "1.0.95"
-assert_cmd = "2.0.16"
+anyhow = "1.0.98"
+assert_cmd = "2.0.17"
 cargo-bin = "0.3.0"
 fastrand = "2.3.0"
 predicates = "3.1.3"
 serial_test = "3.2.0"
-tempfile = "3.17.1"
+tempfile = "3.20.0"
