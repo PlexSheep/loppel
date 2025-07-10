@@ -7,8 +7,8 @@ authors = ["Christoph J. Scherr <software@cscherr.de>"]
 license = "GPL-3.0-or-later"
 description = "Simple local file backups with a bit of compression"
 readme = "README.md"
-homepage = "https://github.com/PlexSheep/lopppel"
-repository = "https://github.com/PlexSheep/lopppel"
+homepage = "https://github.com/PlexSheep/loppel"
+repository = "https://github.com/PlexSheep/loppel"
 keywords = ["cli", "backup", "local-backup"]
 categories = ["command-line-utilities", "filesystem"]
 
