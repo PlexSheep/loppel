@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.1.3](https://github.com/PlexSheep/loppel/compare/v0.1.2...v0.1.3)
+
+### ⚙️ Miscellaneous Tasks
+
+- Typo in Cargo.toml link - ([4cff3f7](https://github.com/PlexSheep/loppel/commit/4cff3f7161723b0c3d8b8c3a517d5d866a3cbc5f))
+
+
 ## [0.1.2](https://github.com/PlexSheep/loppel/compare/v0.1.1...v0.1.2)
 
 ### ⛰️ Features
